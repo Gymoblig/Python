@@ -1,4 +1,3 @@
-#no faktorial čo k tomu mám dodať
 # Napíšte program na súčin čísel od 1 do 10
 # Faktorial zadaného prirodzeného čísla
 f= 1
