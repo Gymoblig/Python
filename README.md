@@ -1,3 +1,4 @@
-# Python![159-1595848_python-logo-png-transparent-background-python-logo-png](https://user-images.githubusercontent.com/74238246/200592605-fba5a2ed-3a94-460e-9769-d3f6ae99ce85.jpg)
+# ![Python-Logo](https://user-images.githubusercontent.com/74238246/200592943-9177d565-cb65-4da5-8300-253c860069d3.png)
+
 - Projekty vypracované na hodinách seminárov z informatiky
 - Obsahujú poznámky a aj vysvetlenia daného problému
