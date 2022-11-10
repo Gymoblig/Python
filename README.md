@@ -9,4 +9,4 @@ Každý projekt je kategorizovaný a obohatený o malé poznámky, ktoré napom�
 
 ###### Python Projekty
 - Obsahuje projekty, ktoré som si sám vypracoval vo voľnom čase za účelom zlepšovania vlastných vedomostí
-![Python-logo](/images/python.png)
+![Python-logo](/images/pythonimg.png)
