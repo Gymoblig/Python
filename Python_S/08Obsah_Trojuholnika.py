@@ -1,10 +1,11 @@
 # Napíšte program na výpočet obsahu trojuholníka so základňou z, výškou v.
 # Doplňte ho prehľadným spôsobom o testovanie, či je obsah zo zadaného intervalu (D,H).
-def test():
+def funkcia():
     if a<S<b:
-        print('Zadaný obsah ',S,' je v intervale <',a,',',b,'>')
+        slovo = str('')
     else:
-        print('Zadaný obsah ',S,' nie je v intervale <',a,',',b,'>')
+        slovo = str('nie')
+    print('Zadaný obsah ',S, str(slovo)+' je v intervale <',a,',',b,'>')
 
 print('Obsah Trojuholníka')
 print('---------------------------------------------------------------')
@@ -16,5 +17,5 @@ print('Obsah trojuholníka je:',str(S),"cm\u00b2")
 
 a = float(input('Je zadaný obsah v intervale od:'))
 b = float(input('                            do:'))
-test()
+funkcia()
 
