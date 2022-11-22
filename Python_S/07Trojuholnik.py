@@ -9,7 +9,7 @@ c = int(input('Zadajte stranu c: '))
 
 if a+b>c and a+c>b and b+c>a:
     print('Tieto strany môžu tvoriť trojuholník :-)')
-    pravo = str(input('Chcete otestovať či je to pravouhlý trojuholník? y/n: '))
+    pravo = str(input('Chcete otestovať či je to pravouhlý trojuholník? y/n: ')).lower()
     if pravo=='y':
         lava = c*c
         prava = a*a+b*b
