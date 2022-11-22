@@ -4,15 +4,18 @@
 # Ošetrite program tak, aby číslo 2 bolo správne otestované.
 # Zabezpečte vypísanie informácie, či ide o prvočíslo alebo zložené číslo.
 
+def je_prvocislo(x):
+    je= x > 1
+
+    for delitel in range(2,x):
+        if x % delitel ==  0:
+            je= False
+            break
+    return je
+
 
 cislo = int(input('Zadajte číslo: '))
-je_prvocislo = cislo > 1
-
-for delitel in range(2,cislo):
-    if cislo % delitel ==  0:
-        je_prvocislo = False
-        break
-if je_prvocislo:
+if je_prvocislo(cislo):
     print('Číslo', cislo,'je prvočíslo')
 else:
     print('Číslo', cislo,'nie prvočíslo')
