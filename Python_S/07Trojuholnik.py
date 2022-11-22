@@ -20,7 +20,7 @@ if a+b>c and a+c>b and b+c>a:
         else:
             print(c,'*',c,'=',a,'*',a,'+',b,'*',b)
             print('Toto nie je pravouhlý trojuholník')
-    elif pravo=='n':
+    else:
         input('Stlačte ENTER pre ukončenie')
 else:
     print('Tieto strany nemôžu tvoriť trojuholník')

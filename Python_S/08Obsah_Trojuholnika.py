@@ -8,6 +8,7 @@ v = float(input('Zadajte výšku na základňu (\x1B[3m v CM \x1B[0m): '))
 
 S=(z*v)/2
 print('Obsah trojuholníka je:',str(S),"cm\u00b2")
+
 a = float(input('Je zadaný obsah v intervale od:'))
 b = float(input('                            do:'))
 if a<S<b:
