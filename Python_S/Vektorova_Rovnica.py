@@ -43,3 +43,4 @@ print('d =',d)
 print('---------------------------------------------------------------')
 
 print('Rovnica je:',str(a1)+'x +',str(a2)+'y +',str(a3)+'z +',d,'= 0')
+input('Stlačte ENTER pre ukončenie')
