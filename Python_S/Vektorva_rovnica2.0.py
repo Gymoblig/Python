@@ -41,5 +41,5 @@ d = -((a1*n1)+(a2*n2)+(a3*n3))
 print('d =',d)
 print('---------------------------------------------------------------')
 
-print('Rovnica je:',str(a1)+'x +',str(a2)+'y +',str(a3)+'z +',d,'= 0')
+print('Rovnica je:',str(n1)+'x +',str(n2)+'y +',str(n3)+'z + ',d,' = 0')
 input('Stlačte ENTER pre ukončenie')
