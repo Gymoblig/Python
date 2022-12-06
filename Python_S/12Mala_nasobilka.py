@@ -2,8 +2,8 @@
 import random
 
 def pocitanie():
-    c= random.randint(0,9)
-    c1= random.randint(0,9)
+    c= random.randint(0,10)
+    c1= random.randint(0,10)
     x=c*c1
     print(c,'*',c1,'= ? ')
     vysledok = int(input())
