@@ -3,12 +3,19 @@
 # ochranou vstupu zabezpečte, aby sa nemohli zadať nuly
 # odstráňte záporné znamienka v prípade zadania záporných čísel
 # program vypočíta a vypíše ich najväčší spoločný deliteľ.
-import math
+def delitel(a,b):
+    while a != b:
+        if a > b:
+            a = a - b
+        else:
+            b = b - a
+    return a
+
 
 
 
 a = int(input('Zadajte prvé číslo: '))
 b = int(input('Zadajte druhé číslo: '))
 
-d = math.gcd(a,b)
+d = delitel(a,b)
 print('Najväčší spoločný deliteľ čísel',a,"a",b,'je číslo',d)
