@@ -18,4 +18,4 @@ cislo = int(input('Zadajte číslo: '))
 if je_prvocislo(cislo):
     print('Číslo', cislo,'je prvočíslo')
 else:
-    print('Číslo', cislo,'nie prvočíslo')
+    print('Číslo', cislo,'nie je prvočíslo')

@@ -12,8 +12,8 @@ rychlost = 60 #int(input('Zadajte rýchlosť (km/h): '))
 spotreba = 0.072 #int(input('Zadajte spotrebu (l/100km): '))
 vzdialenost = int(input('Zadajte vzdialenosť (m): '))
 
-rychlost2 = rychlost/3.6
-cas= vzdialenost/rychlost2
+rychlost = rychlost/3.6
+cas= vzdialenost/rychlost
 #spotreba2= spotreba/1000 --> toto je v prípade, že spotrebu zadávame tiež
 nadrz = vzdialenost*spotreba #spotreba2
 
