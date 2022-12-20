@@ -18,4 +18,4 @@ cas= vzdialenost/rychlost
 nadrz = vzdialenost*spotreba #spotreba2
 
 
-print('Auto prejde vzialenosť ',vzdialenost,' metrov za ',int(cas),'s a minie ',int(nadrz),'ml paliva za tento čas')
+print('Auto prejde vzialenosť ',vzdialenost,' metrov za ',str(cas)+'s a minie ',int(nadrz),'ml paliva za tento čas')
