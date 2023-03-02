@@ -85,7 +85,7 @@ while True:
 
     elif 'who is' in command or 'what is' in command or 'what was' in command or 'who was' in command:
         pywhatkit.search(command)
-        print('   </RUBY/> results for '+command)
+        print('   </RUBY/> Results for '+command)
         talk('results for '+command)
 
     elif 'search' in command:
@@ -110,6 +110,10 @@ while True:
         print('   </RUBY/> Opening gmail')
         talk('Opening gmail')
 
+    elif 'open github' in command:
+        webbrowser.open_new_tab("https://github.com/Gymoblig")
+        print('   </RUBY/> Opening github')
+        talk('Opening github')
     elif 'open youtube' in command:
         webbrowser.open_new_tab("https://www.youtube.com")
         print('   </RUBY/> Opening youtube')
