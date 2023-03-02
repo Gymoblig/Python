@@ -112,8 +112,8 @@ while True:
 
     elif 'open github' in command:
         webbrowser.open_new_tab("https://github.com/Gymoblig")
-        print('   </RUBY/> Opening github')
-        talk('Opening github')
+        print('   </RUBY/> Opening GitHub')
+        talk('Opening git hub')
     elif 'open youtube' in command:
         webbrowser.open_new_tab("https://www.youtube.com")
         print('   </RUBY/> Opening youtube')
