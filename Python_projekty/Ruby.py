@@ -61,6 +61,7 @@ def wishMe():
 # Start the voice assistant
 print(pyfiglet.figlet_format('        RUBY'))
 wishMe()
+open('reminders.txt', 'w')
 with open('reminders.txt', 'r') as f:
     reminders = f.read()
     if reminders:
