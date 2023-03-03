@@ -15,7 +15,7 @@ import pyfiglet
 import smtplib
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
-os.system('mode con: cols=40 lines=40')
+os.system('mode con: cols=60 lines=60')
 os.system('color b')
 # Set the voice
 voices = engine.getProperty('voices')
@@ -59,9 +59,9 @@ def wishMe():
         print(f"   </RUBY/> Good evening, It's " + time)
         talk(f"Good evening , It's " + time)
 # Start the voice assistant
-print(pyfiglet.figlet_format('        RUBY'))
+print(pyfiglet.figlet_format('                   RUBY'))
 wishMe()
-open('reminders.txt', 'w')
+open('reminders.txt', 'a')
 with open('reminders.txt', 'r') as f:
     reminders = f.read()
     if reminders:
@@ -311,7 +311,7 @@ while True:
             print('   </RUBY/> You have no reminders')
             talk('You have no reminders')
 
-    elif 'delete reminders' in command:
+    elif 'delete remineders' in command:
         open('reminders.txt', 'w').close()
         print('   </RUBY/> All reminders deleted')  
         talk('All reminders deleted')
