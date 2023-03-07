@@ -5,6 +5,7 @@ master.title("Text")  # Set the title of the window
 canvas = tkinter.Canvas(master, width=600, height=600, bg='white')  # Create a canvas inside the window
 y = 30
 text = str(input('Zadajte text: '))
+#font = int(input('Zadajte text: '))
 font = 20
 
 for i in range(0,4):
@@ -15,5 +16,5 @@ for i in range(0,4):
 
 
 
-canvas.pack()  # Pack the canvas into the window
-tkinter.mainloop()  # Start the main event loop
+canvas.pack()  
+tkinter.mainloop()  
