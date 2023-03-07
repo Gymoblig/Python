@@ -13,14 +13,32 @@ import time
 import random
 import pyfiglet
 import smtplib
+from bs4 import BeautifulSoup
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
-os.system('mode con: cols=60 lines=60')
+os.system('mode con: cols=130 lines=35')
 os.system('color b')
 # Set the voice
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
+def get_weather():
+    # specify the website to scrape
+    url = 'https://www.foreca.sk/Slovakia/Ruzomberok'
 
+    # make a GET request to the website and get the HTML content
+    response = requests.get(url)
+    content = response.content
+
+    # use Beautiful Soup to parse the HTML content
+    soup = BeautifulSoup(content, 'html.parser')
+
+    # get the current temperature and weather condition from the parsed content
+    temp = soup.find('span', {'class':'txt-xxlarge'}).text
+    
+    cond = soup.find('div', {'class':'txt-tight'}).text.split()[0]
+
+    # return the temperature and weather condition as a string
+    return f"The current temperature is {temp} and the weather is {cond}"
 # Define the talk function to speak the text
 def talk(text):
     engine.say(text)
@@ -59,8 +77,15 @@ def wishMe():
         print(f"   </RUBY/> Good evening, It's " + time)
         talk(f"Good evening , It's " + time)
 # Start the voice assistant
-print(pyfiglet.figlet_format('                   RUBY'))
+print(pyfiglet.figlet_format('                                                       RUBY'))
 wishMe()
+
+
+weather_info = get_weather()
+print(f'   </RUBY/> {weather_info}')
+talk(f'{weather_info}')
+
+
 open('reminders.txt', 'a')
 with open('reminders.txt', 'r') as f:
     reminders = f.read()
@@ -74,6 +99,18 @@ with open('reminders.txt', 'r') as f:
     else:
         print('   </RUBY/> You have no reminders')
         talk('You have no reminders')
+
+
+
+
+
+
+
+
+
+
+
+
 # Run the voice assistant indefinitely
 while True:
     command = listen()
@@ -125,6 +162,11 @@ while True:
         print('   </RUBY/> Opening Calculator')
         talk('Opening Calculator')
 
+    elif 'open notion' in command:
+        os.startfile('C:\Users\MATÚŠ\AppData\Local\Programs\Notion\Notion.exe')
+        print('   </RUBY/> Opening Notion')
+        talk('Opening Notion')
+    
     elif 'open reddit' in command:
         webbrowser.open_new_tab("https://www.reddit.com")
         print('   </RUBY/> Opening reddit')
@@ -136,19 +178,10 @@ while True:
         talk('Opening Twitch')
 
     elif 'weather' in command:
-        city = command.split(' ')[-1]
-        weather_url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid=your_api_key_here&units=metric".format(city)
-        response = requests.get(weather_url)
-        data = response.json()
-        if data['cod'] == 200:
-            description = data['weather'][0]['description']
-            temperature = data['main']['temp']
-            feels_like = data['main']['feels_like']
-            print('   </RUBY/> The weather in {} is {} with a temperature of {}°C (feels like {}°C)'.format(city, description, temperature, feels_like))
-            talk('The weather in {} is {} with a temperature of {} degrees Celsius (feels like {} degrees Celsius)'.format(city, description, temperature, feels_like))
-        else:
-            print('   </RUBY/> Sorry, I could not find the weather for that location')
-            talk('Sorry, I could not find the weather for that location')
+        result_weather = get_weather()
+        print(f'   </RUBY/> {result_weather}')
+        talk(f'{result_weather}')
+        
 
 
     elif 'news' in command:
@@ -311,7 +344,7 @@ while True:
             print('   </RUBY/> You have no reminders')
             talk('You have no reminders')
 
-    elif 'delete remineders' in command:
+    elif 'delete reminders' in command:
         open('reminders.txt', 'w').close()
         print('   </RUBY/> All reminders deleted')  
         talk('All reminders deleted')
