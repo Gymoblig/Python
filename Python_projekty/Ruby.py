@@ -163,7 +163,7 @@ while True:
         talk('Opening Calculator')
 
     elif 'open notion' in command:
-        os.startfile('C:\Users\MATÚŠ\AppData\Local\Programs\Notion\Notion.exe')
+        #os.startfile('C:\Users\MATÚŠ\AppData\Local\Programs\Notion\Notion.exe')
         print('   </RUBY/> Opening Notion')
         talk('Opening Notion')
     
