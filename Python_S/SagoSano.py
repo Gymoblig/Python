@@ -32,7 +32,6 @@ def riesenie():
                                             san = s * 1000 + a * 100 + n * 10 + o
                                             felic = f * 10000 + e * 1000 + l * 100 + i * 10 + c
                                             if sag + san == felic:
-                                             
                                                 pocet+=1
                                                 print(f"SAGO = {s}{a}{g}{o} + SANO = {s}{a}{n}{o} = FELIC = {f}{e}{l}{i}{c}")
     print(f'Počet riešení je: {pocet}')                                            
