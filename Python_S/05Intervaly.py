@@ -19,7 +19,7 @@ if a>c:
     p=b
     b=d
     d=p
-if b>c:
+if b<c:
     print("Nemajú prienik")
 elif b==c:
     print("Prienikom je bod ",b,"-")
