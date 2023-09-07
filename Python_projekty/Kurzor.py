@@ -1,5 +1,5 @@
 import numpy as np
-
+from cvzone.HandTrackingModule import HandDetector
 import cvzone.HandTrackingModule as htm
 import time
 import pyautogui
@@ -17,10 +17,10 @@ clocX, clocY = 0, 0
 cap = cv2.VideoCapture(1)
 cap.set(3, wCam)
 cap.set(4, hCam)
-detector = htm.HandDetector()
+detector = htm.HandDetector()  # Create an instance of the HandDetector class
 wScr, hScr = pyautogui.size()
 print(wScr, hScr)
- 
+
 while True:
     success, img = cap.read()
     hands, img = detector.findHands(img)
@@ -29,10 +29,10 @@ while True:
     if hands:
         # Hand 1
         hand1 = hands[0]
-        lmList1 = hand1["lmList"]  # Záchytné body na ruke (kĺby)
-        bbox1 = hand1["bbox"]  # Box okolo ruky x,y,w,h
-        centerPoint1 = hand1["center"]  # Stred ruky cx,cy
-        handType1 = hand1["type"]  # Určenie ruky
+        lmList1 = hand1["lmList"]  # Landmarks on the hand (joints)
+        bbox1 = hand1["bbox"]  # Bounding box around the hand x, y, w, h
+        centerPoint1 = hand1["center"]  # Center of the hand cx, cy
+        handType1 = hand1["type"]  # Determine hand type
         x1, y1 = lmList1[8]
         x2, y2 = lmList1[12]
 

@@ -23,7 +23,7 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 def get_weather():
     # specify the website to scrape
-    url = 'https://www.foreca.sk/Slovakia/Ruzomberok'
+    url = 'https://www.foreca.sk/Slovakia/Ruzomberok?quick_units=metric'
 
     # make a GET request to the website and get the HTML content
     response = requests.get(url)
