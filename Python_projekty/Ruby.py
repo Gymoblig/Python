@@ -14,6 +14,13 @@ import random
 import pyfiglet
 import smtplib
 from bs4 import BeautifulSoup
+import serial
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+
+# Change the serial port to match your Arduino's port
+ser = serial.Serial('COM4', 9600)
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
 os.system('mode con: cols=130 lines=35')
@@ -33,17 +40,33 @@ def get_weather():
     soup = BeautifulSoup(content, 'html.parser')
 
     # get the current temperature and weather condition from the parsed content
-    temp = soup.find('span', {'class':'txt-xxlarge'}).text
+    temp = soup.find('span', {'class':'txt-xxlarge'}).text.split()[0]
     
     cond = soup.find('div', {'class':'txt-tight'}).text.split()[0]
 
     # return the temperature and weather condition as a string
-    return f"The current temperature is {temp} and the weather is {cond}"
+    return f"The current temperature is {temp} Celsius and the weather is {cond}"
 # Define the talk function to speak the text
 def talk(text):
+    ser.write(text.encode() + b'\n')
     engine.say(text)
     engine.runAndWait()
+    
+    time.sleep(2)
+def set_volume_percent(volume_percent):
+    devices = AudioUtilities.GetSpeakers()
+    interface = devices.Activate(
+        IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    volume = cast(interface, POINTER(IAudioEndpointVolume))
 
+    # Get the current volume range
+    min_volume, max_volume, _ = volume.GetVolumeRange()
+    
+    # Calculate the volume level based on the percentage
+    target_volume = (max_volume - min_volume) * (volume_percent / 100.0) + min_volume
+
+    # Set the volume to the calculated level
+    volume.SetMasterVolumeLevelScalar(target_volume, None)
 # Define the listen function to listen for the user's command
 def listen():
     r = sr.Recognizer()
@@ -57,8 +80,7 @@ def listen():
             command = r.recognize_google(audio, language='en-us')
             print(f"   <USER>: {command}\n")
         except:
-            print('   </RUBY/> Sorry, what did you say?')
-            talk('Sorry, what did you say?')
+            
             return "None"
 
         return command.lower()
@@ -143,7 +165,13 @@ while True:
         print('   </RUBY/> Current time is ' + time)
         talk('Current time is ' + time)
 
-    elif 'open mail' in command:
+    elif 'set volume' in command:
+        volume = command.replace('set volume', '')
+        set_volume_percent(int(volume))
+        print('   </RUBY/> Volume set to ' + volume)
+        talk('Volume set to' + volume)
+
+    elif 'open my mail' in command:
         webbrowser.open_new_tab("https://www.gmail.com")
         print('   </RUBY/> Opening gmail')
         talk('Opening gmail')
@@ -181,7 +209,9 @@ while True:
         result_weather = get_weather()
         print(f'   </RUBY/> {result_weather}')
         talk(f'{result_weather}')
-        
+    elif 'intruder' in command:
+        webbrowser.open_new_tab("https://youtu.be/ekY09M48Jvs?si=9sqcAh8SyDLMr_ND&t=82")
+        talk('You picked wrong house mother fucker')
 
 
     elif 'news' in command:
@@ -344,7 +374,7 @@ while True:
             print('   </RUBY/> You have no reminders')
             talk('You have no reminders')
 
-    elif 'delete reminders' in command:
+    elif 'delete reminders' in command or 'delete the reminders' in command:
         open('reminders.txt', 'w').close()
         print('   </RUBY/> All reminders deleted')  
         talk('All reminders deleted')
@@ -397,7 +427,7 @@ while True:
 
     elif 'turn off' in command or 'quit' in command:
         print('   </RUBY/> Turning Off')
-        talk('Turning Off')
+        talk('Turning Off                       ')
         #j=4
         #while j > 0:
         #    j = j-1

@@ -1,78 +1,35 @@
-import numpy as np
-from cvzone.HandTrackingModule import HandDetector
-import cvzone.HandTrackingModule as htm
-import time
-import pyautogui
-import cv2 
-##########################
-wCam, hCam = 640, 480
-frameR = 150 # Redukcia Snímkov
-smoothening = 2
-#########################
- 
-pTime = 0
-plocX, plocY = 0, 0
-clocX, clocY = 0, 0
- 
-cap = cv2.VideoCapture(1)
-cap.set(3, wCam)
-cap.set(4, hCam)
-detector = htm.HandDetector()  # Create an instance of the HandDetector class
-wScr, hScr = pyautogui.size()
-print(wScr, hScr)
+import cv2
+import imutils
+# Initialize the Hand tracking module using cv2.data.haarcascades
+hand_cascade = cv2.CascadeClassifier("C:\haarcascade_hand.xml")
+
+# Initialize video capture
+cap = cv2.VideoCapture(2)
 
 while True:
-    success, img = cap.read()
-    hands, img = detector.findHands(img)
-    lmList, bbox = detector.findPosition(img)
-    
-    if hands:
-        # Hand 1
-        hand1 = hands[0]
-        lmList1 = hand1["lmList"]  # Landmarks on the hand (joints)
-        bbox1 = hand1["bbox"]  # Bounding box around the hand x, y, w, h
-        centerPoint1 = hand1["center"]  # Center of the hand cx, cy
-        handType1 = hand1["type"]  # Determine hand type
-        x1, y1 = lmList1[8]
-        x2, y2 = lmList1[12]
+    # Read a frame from the camera
+    ret, frame = cap.read()
 
-        fingers1 = detector.fingersUp(hand1)
+    # Convert the frame to grayscale
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-                
-            
-        if fingers1[1] == 1 and fingers1[2] == 0  and fingers1[0] == 0 and fingers1[3] == 0 and fingers1[4] == 0:
-                
-            cv2.rectangle(img, (frameR, frameR), (wCam - frameR, hCam - frameR), (255, 255, 255), 2)
-            x3 = np.interp(x1, (frameR, wCam - frameR), (0, wScr))
-            y3 = np.interp(y1, (frameR, hCam - frameR), (0, hScr))
+    # Detect hands in the frame
+    hands = hand_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
-            clocX = plocX + (x3 - plocX) / smoothening
-            clocY = plocY + (y3 - plocY) / smoothening
-    
-            pyautogui.moveTo(wScr - clocX, clocY)
-            cv2.circle(img, (x1, y1), 3, (5, 0, 5), cv2.FILLED)
-            plocX, plocY = clocX, clocY
+    # Draw rectangles around the detected hands
+    for (x, y, w, h) in hands:
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-                
-        if fingers1[1] == 1 and fingers1[2] == 1  and fingers1[0] == 0 and fingers1[3] == 0 and fingers1[4] == 0:
-            center1 = x1, y1
-            center2 = x2, y2
-            length, lineInfo, img = detector.findDistance(center1, center2, img) 
-            print(length)
-        # Kliknutie ľavým tlačidlom (Hodnota 20 = Mala by sa zmeniť v závislosti k vzialenosti kamery od ruky)
-            if length < 20:
-                cv2.circle(img, (lineInfo[4], lineInfo[5]),
-                15, (0, 255, 0), cv2.FILLED)
-                pyautogui.click()
-        
-        if fingers1[2] == 0 and fingers1[1] == 0  and fingers1[0] == 1 and fingers1[3] == 0 and fingers1[4] == 1:
-                break
+        # You can also add logic here to identify specific hand gestures or fingers
+
+    # Display the frame with hand tracking
+    cv2.imshow("Hand Tracking", imutils.resize(frame, width=800))
 
 
-    
-    cv2.imshow("Ruky", img)
+    # Break the loop when the 'q' key is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-    
-    
-    cv2.waitKey(1)
+
+# Release the video capture and close OpenCV windows
+cap.release()
+cv2.destroyAllWindows()
