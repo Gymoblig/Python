@@ -1,11 +1,29 @@
 # Python 🐍
 
-Všetky python projekty na jednom mieste vytvorené mnou.
-![Python-logo](/images/pythonimg.png)
-Každý projekt je kategorizovaný a obohatený o malé poznámky, ktoré napomáhajú chápať projekt lepšie do budúcna. Viem je to dosť začiatočnícke, ale každý niekde začínal, však? Plánujem sem pridať všetky python projekty, ktoré som kedy urobil. Neviem či tu pridám všetky, ale budem rád ak niekomu, kto bude začínať s pythonom, pomôžem čo i len trošku 😅
+Vitajte v repozitári Python projektov, ktoré som vytvoril. Tento repozitár obsahuje rôzne projekty, ktoré sú kategorizované a doplnené o poznámky, aby som sa k nim mohol kedykoľvek vrátiť a lepšie im porozumieť.  
 
-###### [Python Škola](Python_S)
-- Obsahuje projekty vypracované na hodinách informatiky, ktoré slúžia len ako oprášenie základov 😎
+## Obsah
 
-###### [Python Projekty](Python_proejkty)
-- Obsahuje projekty, ktoré som si sám vypracoval vo voľnom čase za účelom zlepšovania vlastných vedomostí
+- [O repozitári](#o-repozitári)
+- [Štruktúra repozitára](#štruktúra-repozitára)
+- [Ako začať](#ako-začať)
+- [Projekty](#projekty)
+
+## O repozitári
+
+Tento repozitár obsahuje všetky Python projekty, ktoré som kedy vytvoril. Niektoré z nich sú jednoduché, iné sú trochu komplexnejšie, no každý z nich mi pomohol zdokonaliť sa v programovaní. Ak tento repozitár pomôže aj niekomu ďalšiemu pri učení sa Pythonu, budem len rád! 😅  
+
+## Štruktúra repozitára
+
+Repozitár je rozdelený do dvoch hlavných kategórií:
+
+- `Python_S/` - Projekty vypracované na hodinách informatiky, ktoré slúžia na upevnenie základných vedomostí.
+- `Python_projekty/` - Projekty, ktoré som si vytvoril vo voľnom čase na zlepšenie svojich programátorských schopností.
+- `README.md` - Tento súbor, ktorý práve čítate, obsahuje informácie o repozitári a inštrukcie.
+
+## Ako začať
+
+Ak chcete získať tento repozitár, môžete ho jednoducho klonovať pomocou **Git** alebo si ho stiahnuť ako **.zip**:
+
+```bash
+git clone https://github.com/Gymoblig/Python.git
